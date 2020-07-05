@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Typography } from "@material-ui/core";
 
 import { Store } from "client/redux/store";
 import { changeTitle } from "client/redux/action";
@@ -38,9 +37,7 @@ class Home extends React.Component<HomeProps> {
     public render() {
         return (
             <React.Fragment>
-                <Typography>
                     Home page
-                </Typography>
             </React.Fragment>
         );
     }

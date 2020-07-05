@@ -5,14 +5,8 @@ import * as Redux from "redux";
 import { Provider as ReduxProvider } from "react-redux";
 import { StaticRouter as Router } from "react-router-dom";
 import { SheetsRegistry } from "react-jss";
-import { JssProvider } from "react-jss";
-import {
-    MuiThemeProvider,
-    createGenerateClassName
-} from "@material-ui/core/styles";
 
 import App from "client/App";
-import theme from "client/theme";
 import { changeTitle } from "client/redux/reducers/title";
 
 declare const module: any;
@@ -26,22 +20,11 @@ function main() {
     express.get("/*", (req, res, next) => {
         const store = Redux.createStore(changeTitle);
         const sheetsRegistry = new SheetsRegistry();
-        const sheetsManager = new Map();
 
         const appHTML = ReactDOM.renderToString(
             <ReduxProvider store={store}>
                 <Router location={req.path} context={{}}>
-                    <JssProvider
-                        registry={sheetsRegistry}
-                        generateClassName={createGenerateClassName()}
-                    >
-                        <MuiThemeProvider
-                            theme={theme}
-                            sheetsManager={sheetsManager}
-                        >
-                            <App />
-                        </MuiThemeProvider>
-                    </JssProvider>
+                    <App />
                 </Router>
             </ReduxProvider>
         );

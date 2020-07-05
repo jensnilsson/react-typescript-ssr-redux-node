@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Typography } from "@material-ui/core";
 
 interface TestProps {
 }
@@ -12,9 +11,7 @@ class Test extends React.Component<TestProps> {
     public render() {
         return (
             <React.Fragment>
-                <Typography>
                     Test page
-                </Typography>
             </React.Fragment>
         );
     }
