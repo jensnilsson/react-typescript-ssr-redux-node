@@ -7,12 +7,11 @@
 - React, to build our UI
 - Redux, to manage the state of the app
 - Express, as a simple server to render initial page
-- Material UI, as a component library
-- JSS, to style our components
+- JSS, to style our components (Not yet used)
 
 # Installation
 
-### With Yarn
+### Build with Yarn
 
 ```
 $> yarn install
@@ -20,13 +19,16 @@ $> yarn build
 $> yarn start
 ```
 
-### With NPM
+### Dev with Yarn
+
+Will build automatically and then refresh webpage automatically. Meaning that for large projects other process is required.
 
 ```
-$> npm install
-$> npm run build
-$> npm run start
+$> yarn install
+$> yarn build-dev
+$> yarn start-dev
 ```
+
 
 # Usage
 
