@@ -7,7 +7,7 @@ import {
     withStyles
 } from "@material-ui/core";
 
-import NavLinkButton from "common/components/NavLinkButton/NavLinkButton.component";
+import NavLinkButton from "client/components/NavLinkButton/NavLinkButton.component";
 import style from "./AppBar.style";
 
 interface AppBarProps {

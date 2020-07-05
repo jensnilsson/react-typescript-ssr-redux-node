@@ -9,9 +9,9 @@ import {
     createGenerateClassName
 } from "@material-ui/core/styles";
 
-import App from "common/App";
-import theme from "common/theme";
-import { changeTitle } from "common/redux/reducers/title";
+import App from "client/App";
+import theme from "client/theme";
+import { changeTitle } from "client/redux/reducers/title";
 
 const preloadedState = (window as any)["__PRELOADED_STATE__"];
 delete (window as any)["__PRELOADED_STATE__"];

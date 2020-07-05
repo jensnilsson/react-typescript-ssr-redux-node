@@ -2,8 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Typography } from "@material-ui/core";
 
-import { Store } from "common/redux/store";
-import { changeTitle } from "common/redux/action";
+import { Store } from "client/redux/store";
+import { changeTitle } from "client/redux/action";
 
 interface HomeProps {
     title: string;

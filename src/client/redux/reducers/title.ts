@@ -1,5 +1,5 @@
-import { Action } from "common/redux/action";
-import { Store, initialState } from "common/redux/store";
+import { Action } from "client/redux/action";
+import { Store, initialState } from "client/redux/store";
 
 export function changeTitle(
     state: Store = initialState,
