@@ -1,59 +1,57 @@
-import * as React from "react";
-import { connect } from "react-redux";
+import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { Store } from "client/redux/store";
-import { changeTitle } from "client/redux/action";
+import { Store } from 'client/redux/store';
+import { changeTitle } from 'client/redux/action';
 
 interface HomeProps {
-    title: string;
-    updateTitle: any;
+	title: string;
+	updateTitle: any;
 }
 
 class Home extends React.Component<HomeProps> {
-    private titleList: string[];
+	private titleList: string[];
 
-    constructor(props: HomeProps) {
-        super(props);
+	constructor(props: HomeProps) {
+		super(props);
 
-        this.titleList = [
-            "Hello World!",
-            "High five from React",
-            "Wow. Much skills."
-        ];
+		this.titleList = [
+			'Hello World!',
+			'High five from React',
+			'Wow. Much skills.',
+		];
 
-        this.setRandomTitle = this.setRandomTitle.bind(this);
-    }
+		this.setRandomTitle = this.setRandomTitle.bind(this);
+	}
 
-    public setRandomTitle() {
-        let titleIndex = this.titleList.indexOf(this.props.title) + 1;
-        if (titleIndex >= this.titleList.length) {
-            titleIndex = 0;
-        }
+	public setRandomTitle() {
+		let titleIndex = this.titleList.indexOf(this.props.title) + 1;
+		if (titleIndex >= this.titleList.length) {
+			titleIndex = 0;
+		}
 
-        const newTitle = this.titleList[titleIndex];
-        this.props.updateTitle(newTitle);
-    }
+		const newTitle = this.titleList[titleIndex];
+		this.props.updateTitle(newTitle);
+	}
 
-    public render() {
-        return (
-            <React.Fragment>
-                    Home page
-            </React.Fragment>
-        );
-    }
+	public render() {
+		return (
+			<>
+				Home page
+				<button onClick={() => console.log('Hello world!')} />
+			</>
+		);
+	}
 }
 
 const mapStateToProps = (state: Store) => {
-    return {
-        title: state.title
-    };
+	return {
+		title: state.title,
+	};
 };
 
 const mapDispatchToProps = {
-    updateTitle: changeTitle
+	updateTitle: changeTitle,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

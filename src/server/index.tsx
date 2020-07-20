@@ -1,40 +1,40 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom/server";
-import * as Express from "express";
-import * as Redux from "redux";
-import { Provider as ReduxProvider } from "react-redux";
-import { StaticRouter as Router } from "react-router-dom";
-import { SheetsRegistry } from "react-jss";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/server';
+import * as Express from 'express';
+import * as Redux from 'redux';
+import { Provider as ReduxProvider } from 'react-redux';
+import { StaticRouter as Router } from 'react-router-dom';
+import { SheetsRegistry } from 'react-jss';
 
-import App from "client/App";
-import { changeTitle } from "client/redux/reducers/title";
+import App from 'client/App';
+import { changeTitle } from 'client/redux/reducers/title';
 
 declare const module: any;
 
 function main() {
-    const express = Express();
-    const port = 8080;
+	const express = Express();
+	const port = 8080;
 
-    express.use(Express.static("build"));
+	express.use(Express.static('build/public'));
 
-    express.get("/*", (req, res, next) => {
-        const store = Redux.createStore(changeTitle);
-        const sheetsRegistry = new SheetsRegistry();
+	express.get('/*', (req, res, next) => {
+		const store = Redux.createStore(changeTitle);
+		const sheetsRegistry = new SheetsRegistry();
 
-        const appHTML = ReactDOM.renderToString(
-            <ReduxProvider store={store}>
-                <Router location={req.path} context={{}}>
-                    <App />
-                </Router>
-            </ReduxProvider>
-        );
-        const appInitialState = JSON.stringify(store.getState()).replace(
-            /</g,
-            "\\u003c"
-        );
-        const appCSS = sheetsRegistry.toString();
+		const appHTML = ReactDOM.renderToString(
+			<ReduxProvider store={store}>
+				<Router location={req.path} context={{}}>
+					<App />
+				</Router>
+			</ReduxProvider>
+		);
+		const appInitialState = JSON.stringify(store.getState()).replace(
+			/</g,
+			'\\u003c'
+		);
+		const appCSS = sheetsRegistry.toString();
 
-        res.send(`
+		res.send(`
             <!DOCTYPE html>
             <html>
                 <head>
@@ -56,16 +56,16 @@ function main() {
                 </body>
             </html>
         `);
-        res.end();
-        next();
-    });
+		res.end();
+		next();
+	});
 
-    const server = express.listen(port);
+	const server = express.listen(port);
 
-    if (module.hot) {
-        module.hot.accept();
-        module.hot.dispose(() => server.close());
-    }
+	if (module.hot) {
+		module.hot.accept();
+		module.hot.dispose(() => server.close());
+	}
 }
 
 main();
